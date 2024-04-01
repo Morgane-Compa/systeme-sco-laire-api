@@ -6,23 +6,23 @@ export class School {
   id?: number;
 
   @Column({ nullable: false })
-  schoolName?: string;
+  school_name?: string;
 
   @Column({ nullable: false })
-  streetNumber?: number;
+  street_number?: number;
 
   @Column({ nullable: false })
-  streetName?: string;
+  street_name?: string;
 
   @Column({ nullable: false })
-  townName?: string;
+  town_name?: string;
 
   @Column({ nullable: false })
-  postalCode?: number;
+  postal_code?: number;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-  createdAt?: Date;
+  created_at?: Date;
 
-//   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
-//   updatedAt?: Date;
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  updatedat?: Date;
 }
