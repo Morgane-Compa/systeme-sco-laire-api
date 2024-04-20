@@ -14,7 +14,7 @@ class ClassroomController {
         } catch (error) {
             res.status(500).send({ status: "Failed", message: error });
         }
-    }
+    };
 
     // Get one classroom by the id
     async getById(req: Request, res: Response) {
@@ -25,7 +25,7 @@ class ClassroomController {
         } catch (error) {
             res.status(500).send({ status: "Failed", message: error });
         }
-    }
+    };
 
     // Create one classroom
     async create(req: Request, res: Response) {

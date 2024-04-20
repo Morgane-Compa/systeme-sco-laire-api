@@ -1,6 +1,5 @@
 import appDataSource from "../data-source";
 import { Classroom } from "../entities/Classroom";
-import School from "../models/interfaces/School";
 
 class ClassroomService {
 
@@ -36,7 +35,7 @@ class ClassroomService {
     async delete(id: string) {
         console.log("ClassRoomService");
         return this.classroomRepository.delete(id);
-    }
-}
+    };
+};
 
 export default ClassroomService;
