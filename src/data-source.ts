@@ -2,6 +2,7 @@ import { DataSource } from "typeorm";
 import dotenv from "dotenv";
 import { School } from "./entities/School";
 import { Classroom } from "./entities/Classroom";
+import { User_image } from "./entities/UserImage";
 
 
 dotenv.config({path: ".env.local"});
@@ -21,6 +22,6 @@ const appDataSource = new DataSource({
     logging: false,
 
     // TYPEORM Enitities 
-    entities: [School, Classroom],
+    entities: [School, Classroom, User_image],
 });
 export default appDataSource;
