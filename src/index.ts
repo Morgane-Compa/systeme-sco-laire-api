@@ -3,6 +3,7 @@ import cors from 'cors';
 import appDataSource from './data-source';
 import schoolRouter from './routes/SchoolRoutes';
 import classroomRouter from './routes/ClassroomRoutes';
+import userImageRouter from './routes/UserImageRoutes';
 
 appDataSource.initialize().then(() => {
 
@@ -17,13 +18,11 @@ appDataSource.initialize().then(() => {
     })
   );
   app.use(express.json());
-  app.get("/", (req, res) => {
-    res.send("Hello world")
-  });
 
   // Routes
   app.use("/api/schools", schoolRouter);
   app.use("/api/classrooms", classroomRouter);
+  app.use("/api/images", userImageRouter);
 
   app.listen(process.env.PORT, () => {
     console.log(

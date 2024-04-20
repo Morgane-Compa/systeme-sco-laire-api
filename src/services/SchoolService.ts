@@ -21,9 +21,6 @@ class SchoolService {
     // Create one school
     async create(school: School) {
         console.log("SchoolService");
-        // return appDataSource.query(
-        //     `INSERT INTO school (school_name, street_number, street_name, town_name, postal_code, created_at) VALUES ('${school.school_name}', ${school.street_number}, '${school.street_name}', '${school.town_name}', ${school.postal_code}, ${school.created_at});`
-        // );
         const newSchool = this.schoolRepository.create(school);
         return this.schoolRepository.save(newSchool);
     };
