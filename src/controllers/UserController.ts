@@ -5,7 +5,7 @@ class UserController {
     private userService = new UserService();
 
     // Requests
-    // Get all users
+    //*************************************** Get all users ***************************************
     async getAll(req: Request, res: Response) {
         console.log("UserController");
         try {
@@ -16,7 +16,7 @@ class UserController {
         }
     };
 
-    // Get one user by the id
+    //*************************************** Get one user by the id ***************************************
     async getById(req: Request, res: Response) {
         console.log("UserController");
         try {
@@ -27,7 +27,7 @@ class UserController {
         }
     };
 
-    // Delete one user
+    //*************************************** Delete one user ***************************************
     async delete(req: Request, res: Response) {
         console.log("UserController");
         try {

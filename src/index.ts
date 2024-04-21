@@ -5,6 +5,7 @@ import schoolRouter from './routes/SchoolRoutes';
 import classroomRouter from './routes/ClassroomRoutes';
 import userImageRouter from './routes/UserImageRoutes';
 import userRouter from './routes/UserRoutes';
+import setupSwagger from './swagger';
 
 appDataSource.initialize().then(() => {
 
@@ -20,11 +21,15 @@ appDataSource.initialize().then(() => {
   );
   app.use(express.json());
 
+  // setup swagger
+  setupSwagger(app);
+
   // Routes
   app.use("/api/schools", schoolRouter);
   app.use("/api/classrooms", classroomRouter);
   app.use("/api/images", userImageRouter);
   app.use("/api/users", userRouter);
+  
 
   app.listen(process.env.PORT, () => {
     console.log(
