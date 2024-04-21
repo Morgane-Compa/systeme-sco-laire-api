@@ -6,7 +6,7 @@ class UserImageController {
     private userImageService = new UserImageService();
 
     // Requests
-    // Get all images
+    //*************************************** Get all images ***************************************
     async getAll(req: Request, res: Response) {
         console.log("UserImageController");
         try {
@@ -17,7 +17,7 @@ class UserImageController {
         }
     };
 
-    // Get one image by the id
+    //*************************************** Get one image by the id ***************************************
     async getById(req: Request, res: Response) {
         console.log("UserImageController");
         try {
@@ -28,7 +28,7 @@ class UserImageController {
         }
     };
 
-    // Create one image
+    //*************************************** Create one image ***************************************
     async create(req: Request, res: Response) {
          console.log("UserImageController");
         try {
@@ -39,7 +39,7 @@ class UserImageController {
         }
     };
 
-    // Delete one image
+    //*************************************** Delete one image ***************************************
     async delete(req: Request, res: Response) {
          console.log("UserImageController");
         try {

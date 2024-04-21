@@ -5,7 +5,7 @@ class SchoolContoller {
     private schoolService = new SchoolService();
 
     // Requests
-    // Get all schools
+    //*************************************** Get all schools ***************************************
     async getAll(req: Request, res: Response) {
         console.log("schoolController");
         try {
@@ -16,7 +16,7 @@ class SchoolContoller {
         }
     };
 
-    // Get one school by the id
+    //*************************************** Get one school by the id ***************************************
     async getById(req: Request, res: Response) {
         console.log("schoolController");
         try {
@@ -27,7 +27,7 @@ class SchoolContoller {
         }
     };
 
-    // Create one school
+    //*************************************** Create one school ***************************************
     async create(req: Request, res: Response) {
         console.log("schoolController");
         try {
@@ -38,7 +38,7 @@ class SchoolContoller {
         }
     };
 
-    // Delete one school
+    //*************************************** Delete one school ***************************************
     async delete(req: Request, res: Response) {
         console.log("schoolController");
         try {

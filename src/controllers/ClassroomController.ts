@@ -5,7 +5,7 @@ class ClassroomController {
     private classroomService = new ClassroomService();
 
     // Requests
-    // Get all classrooms
+    //*************************************** Get all classrooms ***************************************
     async getAll(req: Request, res: Response) {
         console.log("ClassroomController");
         try {
@@ -16,7 +16,7 @@ class ClassroomController {
         }
     };
 
-    // Get one classroom by the id
+    //*************************************** Get one classroom by the id ***************************************
     async getById(req: Request, res: Response) {
         console.log("ClassroomController");
         try {
@@ -27,7 +27,7 @@ class ClassroomController {
         }
     };
 
-    // Create one classroom
+    //*************************************** Create one classroom ***************************************
     async create(req: Request, res: Response) {
         console.log("ClassroomController");
         try {
@@ -38,7 +38,7 @@ class ClassroomController {
         }
     };
 
-    // Update classroom
+    //*************************************** Update classroom ***************************************
     async classroomUpdate(req: Request, res: Response) { 
         console.log("ClassroomController");   
         try {
@@ -49,7 +49,7 @@ class ClassroomController {
         }
       };
 
-    // Delete one classroom
+    //*************************************** Delete one classroom ***************************************
     async delete(req: Request, res: Response) {
         console.log("ClassroomController");
         try {
