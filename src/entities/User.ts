@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User_image } from "./UserImage";
 import { School } from "./School";
+import { Classroom } from "./Classroom";
 
 @Entity()
 export class User {
@@ -38,6 +39,10 @@ export class User {
 
     @Column({ nullable: false })
     school_id: number; 
+
+    @ManyToMany(() => Classroom, classroom => classroom.users)
+    @JoinTable({ name: "classroom_user" })
+    classrooms: Classroom[];
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     created_at: Date;

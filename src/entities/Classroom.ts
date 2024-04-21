@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { School } from "./School";
+import { User } from "./User";
 
 @Entity()
 export class Classroom {
@@ -21,11 +22,15 @@ export class Classroom {
     school: School;
 
     @Column({ nullable: false })
-    school_id: number; 
+    school_id: number;
+
+    @ManyToMany(() => User, user => user.classrooms)
+    @JoinTable({ name: "classroom_user" })
+    users: User[];
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     created_at: Date;
-  
+
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     updated_at: Date;
 }
