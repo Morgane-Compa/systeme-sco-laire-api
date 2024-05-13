@@ -17,58 +17,118 @@ const swaggerOptions: swaggerJsdoc.Options = {
                     type: 'object',
                     properties: {
                         id: { type: 'integer' },
-                        name: { type: 'string' },
-                        location: { type: 'string' },
+                        school_name: { type: 'string' },
+                        street_name: { type: 'string' },
+                        street_number: { type: 'integer' },
+                        town_name: { type: 'string' },
+                        postal_code: { type: 'integer' },
+                        created_at: { type: 'Date' }
                     },
                 },
                 SchoolInput: {
                     type: 'object',
                     properties: {
-                        name: { type: 'string' },
-                        location: { type: 'string' },
+                        school_name: { type: 'string' },
+                        street_name: { type: 'string' },
+                        street_number: { type: 'integer' },
+                        town_name: { type: 'string' },
+                        postal_code: { type: 'integer' },
+                        created_at: { type: 'Date' }
                     },
-                    required: ['name', 'location'],
+                    required: ['school_name', 'street_name', 'street_number', 'town_name', 'postal_code', 'created_at'],
                 },
                 Classroom: {
                     type: 'object',
                     properties: {
                         id: { type: 'integer' },
-                        name: { type: 'string' },
-                        capacity: { type: 'integer' },
+                        classroom_name: { type: 'string' },
+                        teacher: { type: 'integer' },
+                        grade: { type: 'string' },
+                        school_id: { type: 'integer' },
+                        users: { type: 'User[]' },
+                        created_at: { type: 'Date' },
+                        updated_at: { type: 'Date' }
                     },
                 },
                 ClassroomInput: {
                     type: 'object',
                     properties: {
-                        name: { type: 'string' },
-                        capacity: { type: 'integer' },
+                        classroom_name: { type: 'string' },
+                        teacher: { type: 'integer' },
+                        grade: { type: 'string' },
+                        school_id: { type: 'integer' },
+                        users: { type: 'User[]' },
+                        created_at: { type: 'Date' },
+                        updated_at: { type: 'Date' }
                     },
-                    required: ['name', 'capacity'],
+                    required: ['teacher', 'grade', 'school_id', 'created_at'],
+                },
+                ClassroomUser: {
+                    type: 'object',
+                    properties: {
+                        id: { type: 'integer' },
+                        user: { type: 'User' },
+                        classroom: { type: 'Classroom' },
+                    }
+                },
+                ClassroomUserInput: {
+                    type: 'object',
+                    properties: {
+                        user: { type: 'User' },
+                        classroom: { type: 'Classroom' },
+                    },
+                    required: ['user', 'classroom'],
                 },
                 UserImage: {
                     type: 'object',
                     properties: {
                         id: { type: 'string' },
-                        url: { type: 'string' },
-                        userId: { type: 'string' },
+                        picture_name: { type: 'string' },
+                        picture_path: { type: 'string' }
                     },
                 },
                 UserImageInput: {
                     type: 'object',
                     properties: {
-                        url: { type: 'string' },
-                        userId: { type: 'string' },
+                        picture_name: { type: 'string' },
+                        picture_path: { type: 'string' }
                     },
-                    required: ['url', 'userId'],
+                    required: ['picture_name', 'picture_path'],
                 },
                 User: {
                     type: 'object',
                     properties: {
                         id: { type: 'string' },
-                        name: { type: 'string' },
-                        email: { type: 'string' },
+                        firstname: { type: 'string' },
+                        lastname: { type: 'string' },
+                        mail: { type: 'string' },
+                        phone_number: { type: 'integer' },
+                        user_image_id: { type: 'number' },
+                        password: { type: 'string' },
+                        user_role: { type: 'string' },
+                        school_id: { type: 'number' },
+                        classrooms: { type: 'Classroom[]' },
+                        created_at: { type: 'Date' },
+                        updated_at: { type: 'Date' }
                     },
                 },
+                UserInput: {
+                    type: 'object',
+                    properties: {
+                        firstname: { type: 'string' },
+                        lastname: { type: 'string' },
+                        mail: { type: 'string' },
+                        phone_number: { type: 'integer' },
+                        user_image_id: { type: 'number' },
+                        password: { type: 'string' },
+                        user_role: { type: 'string' },
+                        school_id: { type: 'number' },
+                        classrooms: { type: 'Classroom[]' },
+                        created_at: { type: 'Date' },
+                        updated_at: { type: 'Date' }
+                    },
+                    required: ['firstname', 'lastname', 'mail', 'phone_number', 'password', 'user_role', 'school_id', 'classrooms', 'created_at',],
+                }
             },
         },
     },
