@@ -65,7 +65,7 @@ userRouter.get("/:id", (req, res) => {
     userController.getById(req, res);
 });
 
-//*************************************** delete classroom by id ***************************************
+//*************************************** delete user by id ***************************************
 /**
  * @swagger
  * /api/users/{id}:
@@ -89,6 +89,35 @@ userRouter.get("/:id", (req, res) => {
 userRouter.delete("/:id", (req, res) => {
     console.log("userRouter");
     userController.delete(req, res);
+});
+
+//*************************************** Create user by id ***************************************
+/**
+ * @swagger
+ * /api/user:
+ *   post:
+ *     summary: Create a new user
+ *     description: Create a new user with the provided details.
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UserInput'
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Invalid data provided
+ */
+userRouter.post("/signup", (req, res) => {
+    console.log("UserRouter");
+    userController.signup(req, res);
 });
 
 export default userRouter;

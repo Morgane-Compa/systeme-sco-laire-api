@@ -37,6 +37,20 @@ class UserController {
             res.status(500).send({ status: "Failed", message: error });
         }
     };
+
+    //*************************************** Create one user ***************************************
+    async signup(req: Request, res: Response) {
+        console.log('user controller')
+        const { firstname, lastname, mail, phone_number, password, user_role, school_id } = req.body;
+
+        const createUser = await this.userService.signup(firstname, lastname, mail, phone_number, password, user_role, school_id)
+
+        if (createUser) {
+            res.status(201).json({ message: "User created" });
+        } else {
+            res.status(500).json({ message: "Failed to create" });
+        };
+    };
 };
 
 export default UserController;
