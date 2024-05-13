@@ -6,6 +6,7 @@ import classroomRouter from './routes/ClassroomRoutes';
 import userImageRouter from './routes/UserImageRoutes';
 import userRouter from './routes/UserRoutes';
 import setupSwagger from './swagger';
+import newsRouter from './routes/NewsRoutes';
 
 appDataSource.initialize().then(() => {
 
@@ -29,6 +30,7 @@ appDataSource.initialize().then(() => {
   app.use("/api/classrooms", classroomRouter);
   app.use("/api/images", userImageRouter);
   app.use("/api/users", userRouter);
+  app.use("/api/news", newsRouter);
   
 
   app.listen(process.env.PORT, () => {

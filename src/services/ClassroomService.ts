@@ -29,7 +29,7 @@ class ClassroomService {
     async classroomUpdate(id: string, classroom: Classroom) {
         console.log("ClassroomService");
         return this.classroomRepository.update(id, classroom);
-      };
+    };
 
     //*************************************** Delete one school ***************************************
     async delete(id: string) {
