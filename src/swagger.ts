@@ -21,8 +21,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
                         street_name: { type: 'string' },
                         street_number: { type: 'integer' },
                         town_name: { type: 'string' },
-                        postal_code: { type: 'integer' },
-                        created_at: { type: 'Date' }
+                        postal_code: { type: 'integer' }
                     },
                 },
                 SchoolInput: {
@@ -32,10 +31,9 @@ const swaggerOptions: swaggerJsdoc.Options = {
                         street_name: { type: 'string' },
                         street_number: { type: 'integer' },
                         town_name: { type: 'string' },
-                        postal_code: { type: 'integer' },
-                        created_at: { type: 'Date' }
+                        postal_code: { type: 'integer' }
                     },
-                    required: ['school_name', 'street_name', 'street_number', 'town_name', 'postal_code', 'created_at'],
+                    required: ['school_name', 'street_name', 'street_number', 'town_name', 'postal_code'],
                 },
                 Classroom: {
                     type: 'object',
@@ -45,9 +43,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
                         teacher: { type: 'integer' },
                         grade: { type: 'string' },
                         school_id: { type: 'integer' },
-                        users: { type: 'User[]' },
-                        created_at: { type: 'Date' },
-                        updated_at: { type: 'Date' }
+                        users: { type: 'integer[]' },
                     },
                 },
                 ClassroomInput: {
@@ -57,11 +53,9 @@ const swaggerOptions: swaggerJsdoc.Options = {
                         teacher: { type: 'integer' },
                         grade: { type: 'string' },
                         school_id: { type: 'integer' },
-                        users: { type: 'User[]' },
-                        created_at: { type: 'Date' },
-                        updated_at: { type: 'Date' }
+                        users: { type: 'integer[]' },
                     },
-                    required: ['teacher', 'grade', 'school_id', 'created_at'],
+                    required: ['teacher', 'grade', 'school_id'],
                 },
                 ClassroomUser: {
                     type: 'object',
@@ -103,13 +97,11 @@ const swaggerOptions: swaggerJsdoc.Options = {
                         lastname: { type: 'string' },
                         mail: { type: 'string' },
                         phone_number: { type: 'integer' },
-                        user_image_id: { type: 'number' },
+                        user_image_id: { type: 'integer' },
                         password: { type: 'string' },
                         user_role: { type: 'string' },
-                        school_id: { type: 'number' },
-                        classrooms: { type: 'Classroom[]' },
-                        created_at: { type: 'Date' },
-                        updated_at: { type: 'Date' }
+                        school_id: { type: 'integer' },
+                        classrooms: { type: 'integer[]' },
                     },
                 },
                 UserInput: {
@@ -119,16 +111,56 @@ const swaggerOptions: swaggerJsdoc.Options = {
                         lastname: { type: 'string' },
                         mail: { type: 'string' },
                         phone_number: { type: 'integer' },
-                        user_image_id: { type: 'number' },
+                        user_image_id: { type: 'integer' },
                         password: { type: 'string' },
                         user_role: { type: 'string' },
-                        school_id: { type: 'number' },
-                        classrooms: { type: 'Classroom[]' },
-                        created_at: { type: 'Date' },
-                        updated_at: { type: 'Date' }
+                        school_id: { type: 'integer' },
+                        classrooms: { type: 'integer[]' },
                     },
-                    required: ['firstname', 'lastname', 'mail', 'phone_number', 'password', 'user_role', 'school_id', 'classrooms', 'created_at',],
-                }
+                    required: ['firstname', 'lastname', 'mail', 'phone_number', 'password', 'user_role', 'school_id', 'classrooms'],
+                },
+                News: {
+                    type: 'object',
+                    properties: {
+                        id: { type: 'string' },
+                        news_text: { type: 'string' },
+                        image: { type: 'string' },
+                        user_id: { type: 'integer' },
+                        school_id: { type: 'integer' },
+                        classroom_id: { type: 'integer' },
+                    },
+                },
+                NewsInput: {
+                    type: 'object',
+                    properties: {
+                        news_text: { type: 'string' },
+                        image: { type: 'string' },
+                        user_id: { type: 'integer' },
+                        school_id: { type: 'integer' },
+                        classroom_id: { type: 'integer' },
+                    },
+                    required: ['news_text', 'user_id', 'school_id'],
+                },
+                PrivateMessage: {
+                    type: 'object',
+                    properties: {
+                        id: { type: 'string' },
+                        message_text: { type: 'string' },
+                        image: { type: 'string' },
+                        user_id_1: { type: 'integer' },
+                        user_id_2: { type: 'integer' },
+                    },
+                },
+                PrivateMessageInput: {
+                    type: 'object',
+                    properties: {
+                        message_text: { type: 'string' },
+                        image: { type: 'string' },
+                        user_id_1: { type: 'integer' },
+                        user_id_2: { type: 'integer' },
+                    },
+                    required: ['message_text', 'user_id_1', 'user_id_2'],
+                },
             },
         },
     },

@@ -35,7 +35,7 @@ export class News {
     classroom: Classroom;
 
     @Column({ nullable: false })
-    classroom_id: string;
+    classroom_id: number;
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     created_at: Date;

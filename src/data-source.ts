@@ -6,6 +6,7 @@ import { User_image } from "./entities/UserImage";
 import { User } from "./entities/User";
 import { ClassroomUser } from "./entities/ClassRoomUser";
 import { News } from "./entities/News";
+import { Private_message } from "./entities/PrivateMessage";
 
 
 dotenv.config({path: ".env.local"});
@@ -25,6 +26,6 @@ const appDataSource = new DataSource({
     logging: false,
 
     // TYPEORM Enitities 
-    entities: [School, Classroom, ClassroomUser, User_image, User, News],
+    entities: [School, Classroom, ClassroomUser, User_image, User, News, Private_message],
 });
 export default appDataSource;
