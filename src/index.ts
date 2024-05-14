@@ -7,6 +7,7 @@ import userImageRouter from './routes/UserImageRoutes';
 import userRouter from './routes/UserRoutes';
 import setupSwagger from './swagger';
 import newsRouter from './routes/NewsRoutes';
+import privateMessageRouter from './routes/PrivateMessageRoutes';
 
 appDataSource.initialize().then(() => {
 
@@ -31,7 +32,7 @@ appDataSource.initialize().then(() => {
   app.use("/api/images", userImageRouter);
   app.use("/api/users", userRouter);
   app.use("/api/news", newsRouter);
-  
+  app.use("/api/private_message", privateMessageRouter);
 
   app.listen(process.env.PORT, () => {
     console.log(

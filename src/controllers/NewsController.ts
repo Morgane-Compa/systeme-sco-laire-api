@@ -27,29 +27,29 @@ class NewsController {
         }
     };
 
-//*************************************** Create a new news ***************************************
-async create(req: Request, res: Response) {
-    console.log("NewsController");
-    try {
-        const news = await this.newsService.create(req.body);
-        res.send({ status: "OK", data: news });
-    } catch (error) {
-        res.status(500).send({ status: "Failed", message: error });
-    }
-};
+    //*************************************** Create a new news ***************************************
+    async create(req: Request, res: Response) {
+        console.log("NewsController");
+        try {
+            const news = await this.newsService.create(req.body);
+            res.send({ status: "OK", data: news });
+        } catch (error) {
+            res.status(500).send({ status: "Failed", message: error });
+        }
+    };
 
     //*************************************** Update news ***************************************
-    async newsUpdate(req: Request, res: Response) { 
-        console.log("NewsController");  
+    async newsUpdate(req: Request, res: Response) {
+        console.log("NewsController");
         try {
-          const news = await this.newsService.newsUpdate(req.params.id, req.body);
-          res.send({ status: "OK", data: news });
+            const news = await this.newsService.newsUpdate(req.params.id, req.body);
+            res.send({ status: "OK", data: news });
         } catch (error) {
-          res.status(500).send({ status: "Failed", message: error });
+            res.status(500).send({ status: "Failed", message: error });
         }
-      };
+    };
 
-          //*************************************** Delete one news ***************************************
+    //*************************************** Delete one news ***************************************
     async delete(req: Request, res: Response) {
         console.log("NewsController");
         try {

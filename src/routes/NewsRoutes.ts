@@ -68,7 +68,7 @@ newsRouter.get("/:id", (req, res) => {
 //*************************************** create news ***************************************
 /**
  * @swagger
- * /api/newss:
+ * /api/news:
  *   post:
  *     summary: Create a new news
  *     description: Create a new news.
@@ -133,7 +133,7 @@ newsRouter.patch("/:id", (req, res) => {
 //*************************************** delete news by id ***************************************
 /**
  * @swagger
- * /api/newss/{id}:
+ * /api/news/{id}:
  *   delete:
  *     summary: Delete a news by ID
  *     description: Delete a news by its ID.
