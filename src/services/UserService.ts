@@ -27,9 +27,12 @@ class UserService {
 
 
     //*************************************** Create one user ***************************************
-    async signup(firstname: string, lastname: string, mail: string, phone_number: number, password: string, user_role: string, school_id: number) {
+    async signup(firstname: string, lastname: string, mail: string, phone_number: string, password: string, user_image_id: number, user_role: boolean, school_id: number) {
         console.log("UserService - Sign up");
 
+        if (typeof password !== 'string') {
+            throw new Error('Le mot de passe doit être une chaîne de caractères');
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = this.userRepository.create({
@@ -38,6 +41,7 @@ class UserService {
             mail: mail,
             phone_number: phone_number,
             password: hashedPassword,
+            user_image_id: user_image_id,
             user_role: user_role,
             school_id: school_id
         });

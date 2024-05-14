@@ -18,7 +18,7 @@ export class User {
     mail: string;
 
     @Column({ nullable: false })
-    phone_number: number;
+    phone_number: string;
 
     @ManyToOne(() => User_image, { onDelete: 'CASCADE' })
     @JoinColumn({name: 'user_image_id'})
@@ -31,7 +31,7 @@ export class User {
     password: string;
 
     @Column({ nullable: false })
-    user_role: string;
+    user_role: boolean;
 
     @ManyToOne(() => School, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'school_id' })

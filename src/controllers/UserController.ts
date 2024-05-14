@@ -41,9 +41,9 @@ class UserController {
     //*************************************** Create one user ***************************************
     async signup(req: Request, res: Response) {
         console.log('user controller')
-        const { firstname, lastname, mail, phone_number, password, user_role, school_id } = req.body;
+        const { firstname, lastname, mail, phone_number, user_image_id, password, user_role, school_id } = req.body;
 
-        const createUser = await this.userService.signup(firstname, lastname, mail, phone_number, password, user_role, school_id)
+        const createUser = await this.userService.signup(firstname, lastname, mail, phone_number, password, user_image_id, user_role, school_id)
 
         if (createUser) {
             res.status(201).json({ message: "User created" });
