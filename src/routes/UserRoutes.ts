@@ -91,7 +91,7 @@ userRouter.delete("/:id", (req, res) => {
     userController.delete(req, res);
 });
 
-//*************************************** Create user by id ***************************************
+//*************************************** Create user **************************************
 /**
  * @swagger
  * /api/user:
@@ -119,5 +119,12 @@ userRouter.post("/signup", (req, res) => {
     console.log("UserRouter");
     userController.signup(req, res);
 });
+
+//*************************************** user login ***************************************
+userRouter.post("/login", (req, res) => {
+    console.log("UserRouter");
+    userController.login(req, res);
+});
+
 
 export default userRouter;

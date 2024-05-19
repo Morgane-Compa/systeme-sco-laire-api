@@ -1,6 +1,7 @@
 import appDataSource from "../data-source";
 import { User } from "../entities/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 class UserService {
 
@@ -25,7 +26,6 @@ class UserService {
         return this.userRepository.delete(id);
     };
 
-
     //*************************************** Create one user ***************************************
     async signup(firstname: string, lastname: string, mail: string, phone_number: string, password: string, user_image_id: number, user_role: boolean, school_id: number) {
         console.log("UserService - Sign up");
@@ -47,6 +47,25 @@ class UserService {
         });
         return await this.userRepository.save(newUser);
     };
+
+    //*************************************** user login ***************************************
+    async login(mail: string, password: string){
+        const user = await this.userRepository.findOneBy({ mail: mail});
+        if(!user) {
+            return null;
+        }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if(!isPasswordValid) {
+            return null;
+        }
+        const token = jwt.sign(
+            { id: user.id, mail: user.mail },
+            process.env.JWT_SECRET,
+            { expiresIn: "2h" }
+        );
+        return token;
+    }
 
 };
 

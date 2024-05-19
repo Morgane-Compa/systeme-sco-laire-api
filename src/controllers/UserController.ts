@@ -51,6 +51,18 @@ class UserController {
             res.status(500).json({ message: "Failed to create" });
         };
     };
+
+    //*************************************** user login ***************************************
+    async login(req: Request, res: Response) {
+        const { mail, password } = req.body;
+        const token = await this.userService.login(mail, password);
+
+        if (token) {
+            res.status(200).json({ token: token });
+        } else {
+            res.status(401).json({ message: "Failed login" });
+        };
+    };
 };
 
 export default UserController;

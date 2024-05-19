@@ -24,7 +24,7 @@ export class Classroom {
     @Column({ nullable: false })
     school_id: number;
 
-    @ManyToMany(() => User, user => user.classrooms)
+    @ManyToMany(() => User, user => user.classrooms, {onDelete: "CASCADE", onUpdate: "CASCADE"})
     @JoinTable({ name: "classroom_user" })
     users: User[];
 
