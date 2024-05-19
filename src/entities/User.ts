@@ -41,7 +41,10 @@ export class User {
     school_id: number; 
 
     @ManyToMany(() => Classroom, classroom => classroom.users)
-    @JoinTable({ name: "classroom_user" })
+    @JoinTable({ name: "classroom_user",
+    joinColumn: { name: 'User_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'author_id', referencedColumnName: 'id' } 
+     })
     classrooms: Classroom[];
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

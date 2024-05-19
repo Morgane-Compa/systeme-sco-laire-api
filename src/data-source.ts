@@ -4,7 +4,6 @@ import { School } from "./entities/School";
 import { Classroom } from "./entities/Classroom";
 import { User_image } from "./entities/UserImage";
 import { User } from "./entities/User";
-import { ClassroomUser } from "./entities/ClassRoomUser";
 import { News } from "./entities/News";
 import { Private_message } from "./entities/PrivateMessage";
 
@@ -26,6 +25,6 @@ const appDataSource = new DataSource({
     logging: false,
 
     // TYPEORM Enitities 
-    entities: [School, Classroom, ClassroomUser, User_image, User, News, Private_message],
+    entities: [School, Classroom, User_image, User, News, Private_message],
 });
 export default appDataSource;
