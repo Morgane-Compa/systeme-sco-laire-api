@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import UserService from "../services/UserService";
+import { UserService } from "../services/UserService";
+
 
 class UserController {
     private userService = new UserService();
@@ -55,6 +56,7 @@ class UserController {
     //*************************************** user login ***************************************
     async login(req: Request, res: Response) {
         const { mail, password } = req.body;
+
         const token = await this.userService.login(mail, password);
 
         if (token) {
