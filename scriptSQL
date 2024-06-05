@@ -1,0 +1,268 @@
+-- requêtes création des tables
+DROP TABLE IF EXISTS school CASCADE;
+DROP TABLE IF EXISTS classroom CASCADE;
+DROP TABLE IF EXISTS user_image CASCADE;
+DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS classroom_user CASCADE;
+DROP TABLE IF EXISTS news CASCADE;
+DROP TABLE IF EXISTS private_message CASCADE;
+
+CREATE TABLE school (
+    id SERIAL PRIMARY KEY,
+    school_name VARCHAR(100) NOT NULL,
+    street_name VARCHAR(200) NOT NULL,
+    street_number INT NOT NULL,
+    town_name VARCHAR(200) NOT null,
+    postal_code INT NOT null,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+  
+CREATE TABLE classroom (
+    id SERIAL PRIMARY KEY,
+    classroom_name VARCHAR(100) NOT NULL,
+    teacher VARCHAR(200) NOT NULL,
+    grade VARCHAR(30) NOT NULL,
+	school_id INT REFERENCES school(id) ON DELETE cascade NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+  
+CREATE TABLE user_image (
+    id SERIAL PRIMARY KEY,
+    picture_name VARCHAR(20) NOT NULL,
+    picture_path VARCHAR(200) NOT NULL
+   );
+
+CREATE TABLE "user" (
+    id SERIAL PRIMARY KEY,
+    firstname VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100) NOT NULL,
+    mail VARCHAR(250) UNIQUE NOT null,
+    phone_number VARCHAR(20) NOT NULL,
+    user_image_id INT REFERENCES user_image(id) ON DELETE CASCADE,
+    password VARCHAR(100) NOT NULL,
+    user_role BOOLEAN NOT NULL DEFAULT false,
+    school_id INT REFERENCES school(id) ON DELETE CASCADE NOT NULL,    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+  
+CREATE TABLE classroom_user (
+	classroom_id INT REFERENCES classroom(id) ON DELETE cascade NOT NULL,
+	user_id INT REFERENCES "user"(id) ON DELETE cascade NOT NULL
+   );
+  
+CREATE TABLE news (
+    id SERIAL PRIMARY KEY,
+    news_text VARCHAR(500) NOT NULL,
+    image VARCHAR(200),
+	user_id INT REFERENCES "user"(id) ON DELETE cascade NOT NULL,
+	school_id INT REFERENCES school(id) ON DELETE cascade NOT NULL,
+	classroom_id INT REFERENCES classroom(id) ON DELETE cascade,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+  
+CREATE TABLE private_message (
+    id SERIAL PRIMARY KEY,
+    message_text VARCHAR(500) NOT NULL,
+    image VARCHAR(200),
+	user_id_1 INT REFERENCES "user"(id) ON DELETE cascade NOT NULL,
+	user_id_2 INT REFERENCES "user"(id) ON DELETE cascade NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+  
+INSERT INTO school (school_name, street_name, street_number, town_name, postal_code)
+VALUES 
+(	
+	'Ecole élémentaire Carnot', 
+	'rue Carnot', 
+	01, 
+	'Versailles', 
+	78000
+),
+(	
+	'Ecole élémentaire publique Jacqueline Fleury', 
+	'rue Richard Mique', 
+	06, 
+	'Versailles', 
+	78000
+),
+(	
+	'Ecole maternelle Beethoven', 
+	'rue Beethoven', 
+	01, 
+	'Saint-Germain-en-Laye', 
+	78100
+),
+(	
+	'Ecole élémentaire Pierre et Marie Curie', 
+	'Rue de la Montagne', 
+	01, 
+	'Chilly-Mazarin', 
+	91380
+);
+
+select * from school;
+
+INSERT INTO classroom (classroom_name, teacher, grade, school_id)
+VALUES (
+'les petis ragondins', 
+'Doriane Compa', 
+'CM1-CM2', 
+4
+),
+(
+'les petis nuages', 
+'Florient Crayon', 
+'CP', 
+4
+),(
+'les petis cèdres', 
+'Martine Gomme', 
+'CE1-CE2', 
+4
+),
+(
+'les petis ragondins', 
+'Doriane Compa', 
+'CM1-CM2', 
+1
+),
+(
+'les petis nuages', 
+'Florient Crayon', 
+'CP', 
+2
+),(
+'les petis cèdres', 
+'Martine Gomme', 
+'CE1-CE2', 
+3
+),
+(
+'les petis renards', 
+'Doriane Compa', 
+'CM1-CM2', 
+1
+),
+(
+'les petis loups', 
+'Florient Crayon', 
+'CP', 
+2
+),(
+'les petis carriboux', 
+'Martine Gomme', 
+'CE1-CE2', 
+3
+)
+;
+
+select * from classroom;
+
+INSERT INTO user_image (picture_name, picture_path)
+VALUES (
+'bloop.jpg', 
+'/chemin/vers/image/bloop.jpg'
+);
+
+select * from user_image;
+
+INSERT INTO "user" (firstname, lastname, mail, phone_number, user_image_id, password, user_role, school_id)
+VALUES (
+'Doriane', 
+'Compa', 
+'dodo.compa@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+true, 
+1
+),(
+'Morgane', 
+'Compa', 
+'momo.compa@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+false, 
+2
+),(
+'Annie', 
+'Compa', 
+'nini.compa@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+true, 
+1
+),(
+'Clara', 
+'Cendrillon', 
+'clacla.cencen@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+false, 
+1
+),(
+'Martine', 
+'gomme', 
+'mama.gogome@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+true, 
+2
+),(
+'Florien', 
+'Crayon', 
+'floflo.crcr@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+true, 
+1
+),(
+'Mulan', 
+'Pha', 
+'mumu.pha@gmail.com', 
+'1234567890', 
+1, 
+'monmotdepasse123', 
+false, 
+1
+);
+
+select * from "user";
+
+INSERT INTO news (news_text, image, user_id, school_id, classroom_id)
+VALUES (
+'Cupcake ipsum dolor sit amet soufflé. Chupa chups danish chupa chups brownie cake danish pudding cake. Candy canes chocolate sweet apple pie fruitcake. Candy canes gummi bears donut gummies carrot cake I love I love.', 
+'/chemin/vers/image/actualite.jpg', 
+1, 
+4,
+1
+);
+
+select * from news;
+
+INSERT INTO private_message (message_text, image, user_id_1, user_id_2)
+VALUES (
+'Cupcake ipsum dolor sit amet jelly beans donut I love donut. Gummi bears sesame snaps ice cream topping chupa chups danish brownie bonbon croissant. Dragée I love lemon drops gummies dragée bear claw.', 
+'/chemin/vers/image/message.jpg', 
+1, 
+2
+);
+
+select * from private_message;
+
+INSERT INTO classroom_user (classroom_id, user_id)
+values (
+1,
+2
+)
+
+select * from classroom_user;  

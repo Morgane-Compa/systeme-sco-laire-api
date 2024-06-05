@@ -122,7 +122,6 @@ userRouter.post("/signup", (req, res) => {
 
 //*************************************** user login ***************************************
 userRouter.post("/login", (req, res) => {
-    console.log("UserRouter");
     userController.login(req, res);
 });
 

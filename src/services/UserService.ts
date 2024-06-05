@@ -3,7 +3,7 @@ import { User } from "../entities/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-class UserService {
+export class UserService {
 
     private userRepository = appDataSource.getRepository(User);
 
@@ -49,14 +49,18 @@ class UserService {
     };
 
     //*************************************** user login ***************************************
-    async login(mail: string, password: string){
-        const user = await this.userRepository.findOneBy({ mail: mail});
-        if(!user) {
+    async login(mail: string, password: string) {
+        console.log('UserService - Login');
+
+        const user = await this.userRepository.findOneBy({ mail: mail });
+
+        if (!user) {
             return null;
         }
+
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
-        if(!isPasswordValid) {
+        if (!isPasswordValid) {
             return null;
         }
         const token = jwt.sign(
@@ -66,7 +70,4 @@ class UserService {
         );
         return token;
     }
-
 };
-
-export default UserService;
