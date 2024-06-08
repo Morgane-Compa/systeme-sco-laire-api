@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 export class UserService {
 
     private userRepository = appDataSource.getRepository(User);
+    private refreshTokens: string[] = [];
 
     // Requests
     //*************************************** Get all users ***************************************
@@ -53,21 +54,37 @@ export class UserService {
         console.log('UserService - Login');
 
         const user = await this.userRepository.findOneBy({ mail: mail });
-
         if (!user) {
             return null;
         }
-
         const isPasswordValid = await bcrypt.compare(password, user.password);
-
         if (!isPasswordValid) {
             return null;
         }
-        const token = jwt.sign(
+        const accessToken = jwt.sign(
             { id: user.id, mail: user.mail },
-            process.env.JWT_SECRET,
-            { expiresIn: "2h" }
+            process.env.JWT_SECRET as string,
+            { expiresIn: "10h" }
         );
-        return token;
+        const refreshToken = jwt.sign(
+            { id: user.id, mail: user.mail },
+            process.env.JWT_REFRESH_SECRET as string
+        );
+        this.refreshTokens.push(refreshToken);
+        return { accessToken, refreshToken };
     }
+
+    async refreshToken(token: string) {
+        if (!this.refreshTokens.includes(token)) {
+            throw new Error('Invalid refresh token');
+        }
+        const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET as string) as jwt.JwtPayload;
+        const accessToken = jwt.sign(
+            { id: decoded.id, mail: decoded.mail },
+            process.env.JWT_SECRET as string,
+            { expiresIn: "1h" }
+        );
+
+        return accessToken;
+    };
 };
