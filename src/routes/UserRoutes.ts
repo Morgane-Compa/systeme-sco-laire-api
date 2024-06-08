@@ -122,8 +122,14 @@ userRouter.post("/signup", (req, res) => {
 
 //*************************************** user login ***************************************
 userRouter.post("/login", (req, res) => {
+    console.log('UserRouter - Login');
     userController.login(req, res);
 });
 
+//*************************************** refresh token ***************************************
+userRouter.post("/token", (req, res) => {
+    console.log('UserRouter - Refresh Token');
+    userController.refreshToken(req, res);
+});
 
 export default userRouter;

@@ -55,16 +55,29 @@ class UserController {
 
     //*************************************** user login ***************************************
     async login(req: Request, res: Response) {
+        console.log('UserController - Login');
         const { mail, password } = req.body;
 
-        const token = await this.userService.login(mail, password);
+        const tokens = await this.userService.login(mail, password);
 
-        if (token) {
-            res.status(200).json({ token: token });
+        if (tokens) {
+            res.status(200).json({ token: tokens });
         } else {
             res.status(401).json({ message: "Failed login" });
         };
     };
+
+    async refreshToken(req: Request, res: Response) {
+        console.log('UserController - Refresh Token');
+        const { token } = req.body;
+
+        try {
+            const accessToken = await this.userService.refreshToken(token);
+            res.status(200).json({ accessToken });
+        } catch (error) {
+            res.status(403).json({ message: "Failed login" });
+        }
+    }
 };
 
 export default UserController;
