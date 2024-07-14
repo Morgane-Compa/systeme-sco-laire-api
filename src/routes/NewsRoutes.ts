@@ -1,5 +1,6 @@
 import { Router } from "express";
 import NewsController from "../controllers/NewsController";
+import checkToken from "../middlewares/CheckToken";
 
 const newsRouter = Router();
 const newsController = new NewsController();
@@ -30,7 +31,7 @@ const newsController = new NewsController();
  *               items:
  *                 $ref: '#/components/schemas/News'
  */
-newsRouter.get("/", (req, res) => {
+newsRouter.get("/",(req, res) => {
     console.log("newsRouter");
     newsController.getAll(req, res);
 });

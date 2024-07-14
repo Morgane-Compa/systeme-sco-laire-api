@@ -21,7 +21,6 @@ export class News {
     @Column({ nullable: false })
     user_id: number;
 
-    // Foreign Key linked to school
     @ManyToOne(() => School, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'school_id' })
     school: School;
@@ -29,7 +28,6 @@ export class News {
     @Column({ nullable: false })
     school_id: number;
 
-    // Foreign Key linked to classroom
     @ManyToOne(() => Classroom, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'classroom_id' })
     classroom: Classroom;
@@ -43,3 +41,4 @@ export class News {
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     updated_at: Date;
 }
+

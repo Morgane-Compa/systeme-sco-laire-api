@@ -67,6 +67,7 @@ class UserController {
         };
     };
 
+    //*************************************** refresh token ***************************************
     async refreshToken(req: Request, res: Response) {
         console.log('UserController - Refresh Token');
         const { token } = req.body;

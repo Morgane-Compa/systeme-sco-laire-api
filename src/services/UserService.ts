@@ -74,6 +74,7 @@ export class UserService {
         return { accessToken, refreshToken };
     }
 
+    //*************************************** Refresh token ***************************************
     async refreshToken(token: string) {
         if (!this.refreshTokens.includes(token)) {
             throw new Error('Invalid refresh token');
